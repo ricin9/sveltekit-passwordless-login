@@ -31,6 +31,12 @@
   <slot />
 </main>
 
+<a
+  id="github"
+  href="https://github.com/ricin9/sveltekit-passwordless-login"
+  target="_blank">source code</a
+>
+
 <style>
   main {
     max-width: 700px;
@@ -43,7 +49,11 @@
     justify-content: center;
     margin: 2rem;
   }
-
+  #github {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
   ul {
     display: flex;
     list-style: none;
