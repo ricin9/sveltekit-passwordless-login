@@ -21,10 +21,10 @@ export async function load({ params, cookies, request }) {
 
   const { user_id, expires_at, ip_address } = rows[0];
 
-  const expiresAt = new Date((expires_at + "Z") as string).getTime();
+  const expiresAt = new Date((expires_at + "Z") as string).getTime(); // Z to indicate UTC date
   const now = Date.now();
 
-  if (expiresAt > now) {
+  if (expiresAt < now) {
     error(403, "magic link expired");
   }
 
