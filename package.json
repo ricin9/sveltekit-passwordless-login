@@ -9,7 +9,8 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "deploy": "pnpm run build && wrangler pages deploy",
-    "cf-typegen": "wrangler types && mv worker-configuration.d.ts src/"
+    "cf-typegen": "wrangler types && mv worker-configuration.d.ts src/",
+    "migrate": "node --env-file=.env src/migrations/migration.js"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240821.1",
@@ -23,5 +24,10 @@
     "vite": "^5.0.3",
     "wrangler": "^3.72.3"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@libsql/client": "^0.10.0",
+    "nanoid": "^5.0.7",
+    "resend": "^4.0.0"
+  }
 }
