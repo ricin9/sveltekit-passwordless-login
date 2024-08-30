@@ -1,11 +1,15 @@
 <script>
+  import { page } from "$app/stores";
   import { onMount } from "svelte";
+  import Error from "../login/[magicToken]/+error.svelte";
 
   export let data;
 
   onMount(() => {
-    const channel = new BroadcastChannel("magicLinkSuccess");
-    channel.postMessage("success");
+    if ($page.url.searchParams.get("firstLogin") === "true") {
+      const channel = new BroadcastChannel("magicLinkSuccess");
+      channel.postMessage("success");
+    }
   });
 </script>
 
