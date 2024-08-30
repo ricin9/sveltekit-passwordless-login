@@ -1,5 +1,17 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
   export let form: { error: string; success: boolean };
+
+  let magicLinkSuccess = false;
+  onMount(() => {
+    const channel = new BroadcastChannel("magicLinkSuccess");
+    channel.onmessage = (event) => {
+      if (event.data === "success") {
+        magicLinkSuccess = true;
+      }
+    };
+  });
 </script>
 
 <h1>Login</h1>
@@ -11,14 +23,18 @@
   <p class="error">{form.error}</p>
 {/if}
 
-{#if form?.success}
+{#if form?.success && !magicLinkSuccess}
   <p class="success">check your email for magic link</p>
 {/if}
 
-<form method="post">
-  <label for="email">email </label><input type="email" name="email" /><br />
-  <button type="submit">send me magic link!</button>
-</form>
+{#if magicLinkSuccess}
+  <h2 class="success">logged in successfully, you can now close this tab</h2>
+{:else}
+  <form method="post">
+    <label for="email">email </label><input type="email" name="email" /><br />
+    <button type="submit">send me magic link!</button>
+  </form>
+{/if}
 
 <style>
   .error {

@@ -45,7 +45,7 @@ export async function load({ params, cookies, request }) {
     httpOnly: true,
   });
 
-  redirect(301, "/private");
+  redirect(301, "/private?firstLogin=true");
 }
 
 function generateSession() {

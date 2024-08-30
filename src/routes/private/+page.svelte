@@ -1,5 +1,12 @@
 <script>
+  import { onMount } from "svelte";
+
   export let data;
+
+  onMount(() => {
+    const channel = new BroadcastChannel("magicLinkSuccess");
+    channel.postMessage("success");
+  });
 </script>
 
 <h1>Private Page</h1>
