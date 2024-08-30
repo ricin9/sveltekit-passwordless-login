@@ -1,7 +1,6 @@
 <script>
   import { page } from "$app/stores";
   import { onMount } from "svelte";
-  import Error from "../login/[magicToken]/+error.svelte";
 
   export let data;
 
